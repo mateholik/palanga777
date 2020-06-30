@@ -221,8 +221,10 @@ a {
 
 .homepage .row {
   display: flex;
+  flex-wrap: wrap;
   max-width: 800px;
-  margin: 0 auto; }
+  margin: 0 auto;
+}
   @media (max-width: 768px) {
     .homepage .row {
       display: block;

@@ -88,6 +88,7 @@ h1, h2, h3, h4, h5, h6 {
   -moz-text-align-last: center;
   text-align-last: center;
   font-family: "Poppins", sans-serif;
+  text-align: center;
 }
 
 #header .profile h1 a, #header .profile h1 a:hover {
@@ -324,10 +325,17 @@ section {
 .about .content ul {
   list-style: none;
   padding: 0;
+  padding-top: 1rem;
 }
 
 .about .content ul li {
   padding-bottom: 10px;
+  width: 50%;
+}
+@media (max-width: 768px) {
+  .about .content ul li {
+    width: 100%;
+  }
 }
 
 .about .content ul i {
@@ -809,18 +817,18 @@ section {
   color: #fff;
 }
 
-.contact .php-email-form {
+.contact .wpcf7-form {
   width: 100%;
   padding: 30px;
   background: #fff;
   box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
 }
 
-.contact .php-email-form .form-group {
+.contact .wpcf7-form .form-group {
   padding-bottom: 8px;
 }
 
-.contact .php-email-form .validate {
+.contact .wpcf7-form .validate {
   display: none;
   color: red;
   margin: 0 0 15px 0;
@@ -828,7 +836,7 @@ section {
   font-size: 13px;
 }
 
-.contact .php-email-form .error-message {
+.contact .wpcf7-form .error-message {
   display: none;
   color: #fff;
   background: #ed3c0d;
@@ -837,11 +845,11 @@ section {
   font-weight: 600;
 }
 
-.contact .php-email-form .error-message br + br {
+.contact .wpcf7-form .error-message br + br {
   margin-top: 25px;
 }
 
-.contact .php-email-form .sent-message {
+.contact .wpcf7-form .sent-message {
   display: none;
   color: #fff;
   background: #18d26e;
@@ -850,14 +858,14 @@ section {
   font-weight: 600;
 }
 
-.contact .php-email-form .loading {
+.contact .wpcf7-form .loading {
   display: none;
   background: #fff;
   text-align: center;
   padding: 15px;
 }
 
-.contact .php-email-form .loading:before {
+.contact .wpcf7-form .loading:before {
   content: "";
   display: inline-block;
   border-radius: 50%;
@@ -870,21 +878,21 @@ section {
   animation: animate-loading 1s linear infinite;
 }
 
-.contact .php-email-form input, .contact .php-email-form textarea {
+.contact .wpcf7-form input, .contact .wpcf7-form textarea {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
 }
 
-.contact .php-email-form input {
+.contact .wpcf7-form input {
   height: 44px;
 }
 
-.contact .php-email-form textarea {
+.contact .wpcf7-form textarea {
   padding: 10px 12px;
 }
 
-.contact .php-email-form button[type="submit"] {
+.contact .wpcf7-form input[type="submit"] {
   background: #149ddd;
   border: 0;
   padding: 10px 24px;
@@ -893,7 +901,7 @@ section {
   border-radius: 4px;
 }
 
-.contact .php-email-form button[type="submit"]:hover {
+.contact .wpcf7-form input[type="submit"]:hover {
   background: #37b3ed;
 }
 
@@ -1085,4 +1093,9 @@ section {
 
 .to-homepage i, .to-homepage a {
   color: #149ddd!important;
+}
+
+
+.wpcf7-form label {
+  width: 100%;
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * The template for displaying the homepage.
- * Template Name: Homepage
+ * Template Name: Service
  *
  */
 get_header();
@@ -11,96 +11,218 @@ get_header();
 
 <div class="loader"></div>
 
-<section class="homepage">
-    <video autoplay muted loop class="video">
-        <source src="<?php echo get_template_directory_uri(); ?>/custom-assets/video/juraHD.mp4" type="video/mp4">
-    </video>
-    <div class="container container--homepage">
-        <div style="width: 100%;">
-            <div class="main-title-wrap">
-                <h1 id="js-rotating" class="main-title">Kambarių nuoma Palangoje, Apgyvendinimas Palangoje, Atostogos Palangoje</h1>
-            </div>
-            <div class="cta-wrap">
-                <a class="cta" href="tel:+37069316777">
-                    <span>+370 693 16777</span>
-                </a>
-            </div>
+    <main id="main">
 
-            <div class="row">
-                <div class="col">
-                    <a href="https://testas.vladis.lt/gavno/index.html" class="wrapper">
-                        <div class="watch">Žiūrėti</div>
-                        <div class="card">
-                            <img src="<?php echo get_template_directory_uri(); ?>/custom-assets/img/guesthouse777.jpg" alt="Guest house 777">
-                            <div class="info">
-                                <h1>Guest house 777</h1>
-                                <ul>
-                                    <li>Pačioje Palangos širdyje</li>
-                                    <li>Kaina nuo 45€ už numerį</li>
-                                    <li>Wc ir dušas kiekviename numeryje</li>
-                                    <li>Iki jūros 10 minučiu Pėščiomis</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="#" class="wrapper">
-                        <div class="watch">Žiūrėti</div>
-                        <div class="card">
-                            <img src="<?php echo get_template_directory_uri(); ?>/custom-assets/img/test.jpg" alt="Malūno vila 777">
-                            <div class="info">
-                                <h1>Basanke 777</h1>
-                                <ul>
-                                    <li>Pačioje Palangos širdyje</li>
-                                    <li>Kaina nuo 45€ už numerį</li>
-                                    <li>Wc ir dušas kiekviename numeryje</li>
-                                    <li>Iki jūros 10 minučiu Pėščiomis</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+        <!-- ======= About Section ======= -->
+        <?php
+        $sidebar = get_field('sidebar');
+        $punktai = get_field('apie');
+        $punktaiList = $punktai['punktai'];
+        ?>
+        <section id="about" class="about">
+            <div class="container">
 
-            <div class="row">
-                <div class="col">
-                    <a href="#" class="wrapper">
-                        <div class="watch">Žiūrėti</div>
-                        <div class="card">
-                            <img src="<?php echo get_template_directory_uri(); ?>/custom-assets/img/malunovila777.jpg" alt="Malūno vila 777">
-                            <div class="info">
-                                <h1>Malūno vila 777</h1>
-                                <ul>
-                                    <li>Pačioje Palangos širdyje</li>
-                                    <li>Kaina nuo 45€ už numerį</li>
-                                    <li>Wc ir dušas kiekviename numeryje</li>
-                                    <li>Iki jūros 10 minučiu Pėščiomis</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </a>
+                <div class="section-title">
+                    <h2><?php echo $sidebar['title']; ?></h2>
                 </div>
-                <div class="col">
-                    <a href="#" class="wrapper">
-                        <div class="watch">Žiūrėti</div>
-                        <div class="card">
-                            <img src="<?php echo get_template_directory_uri(); ?>/custom-assets/img/vipalanga777.jpg" alt="VIPalanga 777">
-                            <div class="info">
-                                <h1>VIPalanga 777</h1>
-                                <ul>
-                                    <li>Pačioje Palangos širdyje</li>
-                                    <li>Kaina nuo 45€ už numerį</li>
-                                    <li>Wc ir dušas kiekviename numeryje</li>
-                                    <li>Iki jūros 10 minučiu Pėščiomis</li>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <img src="<?php echo $punktai['image']; ?>" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-8 pt-4 pt-lg-0 content">
+
+
+                        <h3><?php echo $punktai['subtitle']; ?></h3>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="d-flex flex-wrap">
+                            <?php
+                            $rows = $punktaiList;
+                            if( $rows ) {
+                                foreach( $rows as $row ) {
+                                    $item = $row['punktas'];
+                                    echo '<li><i class="icofont-rounded-right"></i>'. $item . '</li>';
+                                }
+                            }
+                            ?>
                                 </ul>
                             </div>
+
                         </div>
-                    </a>
+                        <p><?php echo $punktai['text']; ?></p>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End About Section -->
+
+        <!-- ======= Facts Section ======= -->
+        <section id="facts" class="facts">
+            <div class="container">
+                <?php
+                $kodelMes = get_field('kodel_mes', 'option');
+                ?>
+                <div class="section-title">
+                    <h2><?php echo $kodelMes['taitlas']; ?></h2>
+                </div>
+
+                <div class="row no-gutters">
+                    <?php
+                    if( $kodelMes['blokelis'] ) {
+                        foreach( $kodelMes['blokelis'] as $row ) {
+                            ?>
+                            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+                                <div class="count-box">
+                                    <i class="<?php echo $row['ikonke']; ?>"></i>
+                                    <span data-toggle="counter-up"><?php echo $row['skaicius']; ?></span>
+                                    <p><?php echo $row['tekstas']; ?></p>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    }
+                    ?>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section><!-- End Facts Section -->
+
+
+
+
+        <!-- ======= Portfolio Section ======= -->
+        <section id="portfolio" class="portfolio section-bg">
+            <div class="container">
+                <?php
+                $galerijosSekcija = get_field('galerijos_sekcija');
+
+                ?>
+
+                <div class="section-title">
+                    <h2><?php echo $galerijosSekcija['sekcijos_pavadinimas']; ?></h2>
+                </div>
+
+                <?php
+//                var_dump($galerijosSekcija['konkreti_galerija']); exit;
+                ?>
+
+                    <div class="row">
+                        <div class="col-lg-12 d-flex justify-content-center">
+                            <ul id="portfolio-flters">
+                                <?php
+                                $rows = $galerijosSekcija['konkreti_galerija'];
+                                $count = 0;
+                                if( $rows ) {
+                                    foreach( $rows as $row ) {?>
+                                        <li data-filter=".filter-<?php echo $count; ?>"><?php echo $row["galerijos_pavadinimas"]; ?></li>
+                                        <?php
+                                    $count ++;
+                                    }
+                                } ?>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                <!--                <div class="row">-->
+                <!--                    <div class="col-lg-12 d-flex justify-content-center">-->
+                <!--                        <ul id="portfolio-flters">-->
+                <!--                            <li data-filter="*" class="filter-active">Visos</li>-->
+                <!--                            <li data-filter=".filter-kiemas">Kiemas</li>-->
+                <!--                            <li data-filter=".filter-dvivietis">Dvivietis</li>-->
+                <!--                            <li data-filter=".filter-trivietis">Trivietis</li>-->
+                <!--                            <li data-filter=".filter-keturvietis">Keturvietis</li>-->
+                <!--                        </ul>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+                <div class="row portfolio-container">
+                    <?php
+                    $rows = $galerijosSekcija['konkreti_galerija'];
+                    if( $rows ) {
+                        $count = 0;
+                        foreach( $rows as $row ) {
+                            $images = $row['nuotraukos'];
+                            foreach( $images as $image ): ?>
+                                <div class="col-lg-4 col-md-6 portfolio-item filter-<?php echo $count; ?>">
+                                    <div class="portfolio-wrap">
+                                        <img src="<?php echo esc_url($image['sizes']['gallery_thumb']); ?>" class="img-fluid" alt="">
+                                        <div class="portfolio-links">
+                                            <a href="<?php echo $image['url']; ?>" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach;
+                            $count ++; ?>
+<!--                            Kita galerija-->
+                            <?php
+                        }
+                    } ?>
+
+                </div>
+            </div>
+            </div>
+        </section><!-- End Portfolio Section -->
+
+
+
+        <!-- ======= Contact Section ======= -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <?php
+                $kontaktai = get_field('kontaktai', 'option');
+                if( $kontaktai ): ?>
+                    <div class="section-title">
+                        <h2><?php echo $kontaktai['sekcijos_pavadinimas']; ?></h2>
+                    </div>
+
+                <?php endif; ?>
+
+                <div class="row">
+
+                    <div class="col-lg-5 d-flex align-items-stretch">
+                        <div class="info">
+                            <?php
+                            if( $kontaktai['blokelis'] ):
+                                $rows = $kontaktai['blokelis'];
+                                if( $rows ) {
+                                    foreach( $rows as $row ) {
+                                       ?>
+                                        <div class="address">
+                                            <i class="<?php echo $row['ikonke']; ?>"></i>
+                                            <h4><?php echo $row['taitlas']; ?></h4>
+                                            <?php echo $row['textas']; ?>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            <?php endif; ?>
+                            <style>
+                                .mapsas p {
+                                    margin: 0!important;
+                                    padding: 0!important;
+                                }
+                            </style>
+                            <div class="mapsas">
+                                <?php echo $kontaktai['zemelapis']; ?>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+                        <?php
+                        $contact_form = $kontaktai['contact_form_shortcode'] ;
+                        echo do_shortcode($contact_form)
+                        ?>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Contact Section -->
+
+    </main><!-- End #main -->
 <?php
-get_footer(); 
+get_footer();

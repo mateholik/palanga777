@@ -6,6 +6,10 @@
 */
 !(function($) {
   "use strict";
+  console.log('lox');
+  $(window).load(function() {
+    $(".loader").fadeOut("slow");
+  });
 
 
   // Smooth scroll for the navigation menu and links with .scrollto classes
@@ -164,6 +168,4 @@
     loop: true,
     items: 1
   });
-
-
 })(jQuery);

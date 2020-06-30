@@ -11,21 +11,12 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'palanga777' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'palanga777' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'palanga777' ), 'palanga777', '<a href="http://underscores.me/">Underscores.me</a>' );
-				?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
+<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+
+
+<!-- Template Main JS File -->
+<!--<script src="--><?php //echo get_template_directory_uri(); ?><!--/custom-assets/page/js/main.js"></script>-->
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

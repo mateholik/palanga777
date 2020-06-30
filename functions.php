@@ -151,13 +151,41 @@ function palanga777_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-	//custom
+
+	//custom-homepage
     if(is_page_template( 'template-homepage.php' )) {
         wp_enqueue_style( 'palanga777-homepage-style', get_template_directory_uri() . '/custom-assets/homepage/style.css', array(), _S_VERSION );
-        $jquery_cdn = 'https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js';
-        wp_enqueue_script( 'jquery', $jquery_cdn, array(), '3.4.1', true );
+    //vendor
+        wp_enqueue_script( 'palanga777-post-jquery', get_template_directory_uri() . '/custom-assets/page/vendor/jquery/jquery.min.js', array(''), _S_VERSION, true );
         wp_enqueue_script( 'palanga777-homepage-js', get_template_directory_uri() . '/custom-assets/homepage/main.js', array('jquery'), _S_VERSION, true );
-    };
+
+    } else {
+   //custom-page-CSS
+//        wp_enqueue_style( 'palanga777-homepage-style', get_template_directory_uri() . '/custom-assets/homepage/style.css', array(), _S_VERSION );
+    //vendor
+        wp_enqueue_style( 'palanga777-page-bootstrap', get_template_directory_uri() . '/custom-assets/page/vendor/bootstrap/css/bootstrap.min.css', array(), _S_VERSION );
+        wp_enqueue_style( 'palanga777-page-icofont', get_template_directory_uri() . '/custom-assets/page/vendor/icofont/icofont.min.css', array(), _S_VERSION );
+        wp_enqueue_style( 'palanga777-page-boxicons', get_template_directory_uri() . '/custom-assets/page/vendor/boxicons/css/boxicons.min.css', array(), _S_VERSION );
+        wp_enqueue_style( 'palanga777-page-venobox', get_template_directory_uri() . '/custom-assets/page/vendor/venobox/venobox.css', array(), _S_VERSION );
+        wp_enqueue_style( 'palanga777-page-carousel', get_template_directory_uri() . '/custom-assets/page/vendor/owl.carousel/assets/owl.carousel.min.css', array(), _S_VERSION );
+
+        wp_enqueue_style( 'palanga777-page-style-main', get_template_directory_uri() . '/custom-assets/page/css/style.css', array(), _S_VERSION );
+
+        //custom-page-JS
+        //vendor
+        wp_enqueue_script( 'palanga777-post-jquery', get_template_directory_uri() . '/custom-assets/page/vendor/jquery/jquery.min.js', array(''), _S_VERSION, true );
+        wp_enqueue_script( 'palanga777-post-bootstrap', get_template_directory_uri() . '/custom-assets/page/vendor/bootstrap/js/bootstrap.bundle.min.js', array('jquery'), _S_VERSION, true );
+        wp_enqueue_script( 'palanga777-post-bootstrap-bundle', get_template_directory_uri() . '/custom-assets/page/vendor/bootstrap/js/bootstrap.bundle.min.js', array('jquery'), _S_VERSION, true );
+        wp_enqueue_script( 'palanga777-post-easing', get_template_directory_uri() . '/custom-assets/page/vendor/jquery.easing/jquery.easing.min.js', array('jquery'), _S_VERSION, true );
+        wp_enqueue_script( 'palanga777-post-waypoints', get_template_directory_uri() . '/custom-assets/page/vendor/waypoints/jquery.waypoints.min.js', array('jquery'), _S_VERSION, true );
+        wp_enqueue_script( 'palanga777-post-counterup', get_template_directory_uri() . '/custom-assets/page/vendor/counterup/counterup.min.js', array('jquery'), _S_VERSION, true );
+        wp_enqueue_script( 'palanga777-post-isotope', get_template_directory_uri() . '/custom-assets/page/vendor/isotope-layout/isotope.pkgd.min.js', array('jquery'), _S_VERSION, true );
+        wp_enqueue_script( 'palanga777-post-venobox', get_template_directory_uri() . '/custom-assets/page/vendor/venobox/venobox.min.js', array('jquery'), _S_VERSION, true );
+        wp_enqueue_script( 'palanga777-post-carousel', get_template_directory_uri() . '/custom-assets/page/vendor/owl.carousel/owl.carousel.min.js', array('jquery'), _S_VERSION, true );
+
+        //JS main
+        wp_enqueue_script( 'palanga777-homepage-js', get_template_directory_uri() . '/custom-assets/page/js/main.js', array('jquery'), _S_VERSION, true );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'palanga777_scripts' );
 
@@ -186,5 +214,21 @@ require get_template_directory() . '/inc/customizer.php';
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
+}
+
+
+if( function_exists('acf_add_options_page') ) {
+    acf_add_options_page(array(
+        'page_title' 	=> 'nustatymai-custom',
+        'menu_title'	=> 'NUSTATYMAI custom',
+        'menu_slug' 	=> 'nastroikes',
+        'capability'	=> 'edit_posts',
+        'redirect'		=> false
+    ));
+}
+
+add_action( 'after_setup_theme', 'gallery_thumb_size' );
+function gallery_thumb_size() {
+    add_image_size( 'gallery_thumb', 360, 9999, false );
 }
 

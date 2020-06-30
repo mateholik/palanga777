@@ -18,87 +18,66 @@ get_header();
     <div class="container container--homepage">
         <div style="width: 100%;">
             <div class="main-title-wrap">
-                <h1 id="js-rotating" class="main-title">Kambarių nuoma Palangoje, Apgyvendinimas Palangoje, Atostogos Palangoje</h1>
+                <h1 id="js-rotating" class="main-title">
+                    <?php
+                    if( have_rows('besikeiciancios_frazes') ):
+                        $field_object = get_field_object('besikeiciancios_frazes');
+                        $total_rows = count($field_object['value']);
+                        // loop through the rows of data
+                        $counter = 0;
+
+                        while ( have_rows('besikeiciancios_frazes') ) : the_row();
+                            $counter++;
+                            if($counter != $total_rows) {
+                                echo get_sub_field('fraze') . ',';
+                            } else {
+                                echo get_sub_field('fraze');
+                            }
+                        endwhile;
+                    endif;
+                    ?>
+                </h1>
             </div>
             <div class="cta-wrap">
-                <a class="cta" href="tel:+37069316777">
-                    <span>+370 693 16777</span>
+                <a class="cta" href="tel:<?php echo str_replace(' ', '', get_field('numeris')); ?>7">
+                    <span><?php the_field('numeris'); ?></span>
                 </a>
             </div>
 
             <div class="row">
-                <div class="col">
-                    <a href="https://testas.vladis.lt/gavno/index.html" class="wrapper">
-                        <div class="watch">Žiūrėti</div>
-                        <div class="card">
-                            <img src="<?php echo get_template_directory_uri(); ?>/custom-assets/img/guesthouse777.jpg" alt="Guest house 777">
-                            <div class="info">
-                                <h1>Guest house 777</h1>
-                                <ul>
-                                    <li>Pačioje Palangos širdyje</li>
-                                    <li>Kaina nuo 45€ už numerį</li>
-                                    <li>Wc ir dušas kiekviename numeryje</li>
-                                    <li>Iki jūros 10 minučiu Pėščiomis</li>
-                                </ul>
-                            </div>
+
+                <?php if( have_rows('postas') ):
+                    while( have_rows('postas') ): the_row();
+                        $kontentas = get_sub_field('kontentas');
+                    ?>
+                        <div class="col">
+                            <a href="<?php echo $kontentas['posto_nuoroda']; ?>" class="wrapper">
+                                <div class="watch"><?php echo $kontentas['ziureti']; ?></div>
+                                <div class="card">
+                                    <img src="<?php echo $kontentas['paveiksliukas']; ?>" alt="Guest house 777">
+                                    <div class="info">
+                                        <h1><?php echo $kontentas['taitlas']; ?></h1>
+
+                                        <?php
+                                        $rows = $kontentas['punktas'];
+                                        if( $rows ) {
+                                            echo '<ul>';
+                                            foreach( $rows as $row ) {
+                                                $prideti = $row['prideti_punkta'];
+                                                echo '<li>';
+                                                echo $prideti;
+                                                echo '</li>';
+                                            }
+                                            echo '</ul>';
+                                        } ?>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="#" class="wrapper">
-                        <div class="watch">Žiūrėti</div>
-                        <div class="card">
-                            <img src="<?php echo get_template_directory_uri(); ?>/custom-assets/img/test.jpg" alt="Malūno vila 777">
-                            <div class="info">
-                                <h1>Basanke 777</h1>
-                                <ul>
-                                    <li>Pačioje Palangos širdyje</li>
-                                    <li>Kaina nuo 45€ už numerį</li>
-                                    <li>Wc ir dušas kiekviename numeryje</li>
-                                    <li>Iki jūros 10 minučiu Pėščiomis</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                    <?php endwhile; ?>
+                <?php endif; ?>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    <a href="#" class="wrapper">
-                        <div class="watch">Žiūrėti</div>
-                        <div class="card">
-                            <img src="<?php echo get_template_directory_uri(); ?>/custom-assets/img/malunovila777.jpg" alt="Malūno vila 777">
-                            <div class="info">
-                                <h1>Malūno vila 777</h1>
-                                <ul>
-                                    <li>Pačioje Palangos širdyje</li>
-                                    <li>Kaina nuo 45€ už numerį</li>
-                                    <li>Wc ir dušas kiekviename numeryje</li>
-                                    <li>Iki jūros 10 minučiu Pėščiomis</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="#" class="wrapper">
-                        <div class="watch">Žiūrėti</div>
-                        <div class="card">
-                            <img src="<?php echo get_template_directory_uri(); ?>/custom-assets/img/vipalanga777.jpg" alt="VIPalanga 777">
-                            <div class="info">
-                                <h1>VIPalanga 777</h1>
-                                <ul>
-                                    <li>Pačioje Palangos širdyje</li>
-                                    <li>Kaina nuo 45€ už numerį</li>
-                                    <li>Wc ir dušas kiekviename numeryje</li>
-                                    <li>Iki jūros 10 minučiu Pėščiomis</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
         </div>
     </div>
 </section>

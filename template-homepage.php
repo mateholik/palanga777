@@ -39,7 +39,10 @@ get_header();
                 </h1>
             </div>
             <div class="cta-wrap">
-                <a class="cta" href="tel:<?php echo str_replace(' ', '', get_field('numeris')); ?>7">
+                <div class="veliavos">
+                    <ul><?php pll_the_languages(array('show_flags'=>1,'show_names'=>0)); ?>
+                </div>
+                <a class="cta" href="tel:<?php echo str_replace(' ', '', get_field('numeris')); ?>">
                     <span><?php the_field('numeris'); ?></span>
                 </a>
             </div>

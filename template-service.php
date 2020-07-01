@@ -28,11 +28,16 @@ get_header();
 
                 <div class="row">
                     <div class="col-lg-4">
-                        <img src="<?php echo $punktai['image']; ?>" class="img-fluid" alt="">
+                        <style>
+                            .fix {
+                                max-width: 100%;
+                                height: auto;
+                            }
+                        </style>
+                        <?php echo wp_get_attachment_image( $punktai['image'], 'medium_large',"", ["class" => "fix"] );
+                        ; ?>
                     </div>
                     <div class="col-lg-8 pt-4 pt-lg-0 content">
-
-
                         <h3><?php echo $punktai['subtitle']; ?></h3>
                         <div class="row">
                             <div class="col-lg-12">
@@ -48,12 +53,12 @@ get_header();
                             ?>
                                 </ul>
                             </div>
-
                         </div>
-                        <p><?php echo $punktai['text']; ?></p>
                     </div>
                 </div>
-
+                <div class="text">
+                    <p><?php echo $punktai['text']; ?></p>
+                </div>
             </div>
         </section><!-- End About Section -->
 
@@ -61,7 +66,7 @@ get_header();
         <section id="facts" class="facts">
             <div class="container">
                 <?php
-                $kodelMes = get_field('kodel_mes', 'option');
+                $kodelMes = get_field('kodel_mes');
                 ?>
                 <div class="section-title">
                     <h2><?php echo $kodelMes['taitlas']; ?></h2>
@@ -143,12 +148,12 @@ get_header();
                         $count = 0;
                         foreach( $rows as $row ) {
                             $images = $row['nuotraukos'];
-                            foreach( $images as $image ): ?>
+                            foreach( $images as $image ):?>
                                 <div class="col-lg-4 col-md-6 portfolio-item filter-<?php echo $count; ?>">
                                     <div class="portfolio-wrap">
-                                        <img src="<?php echo esc_url($image['sizes']['gallery_thumb']); ?>" class="img-fluid" alt="">
+                                        <img src="<?php echo esc_url($image['sizes']['gallery_thumb']); ?>" class="img-fluid" alt="<?php echo $image['filename']; ?>">
                                         <div class="portfolio-links">
-                                            <a href="<?php echo $image['url']; ?>" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
+                                            <a href="<?php echo $image['url']; ?>" data-gall="portfolioGallery" class="venobox" title="<?php echo $image['filename']; ?>"><i class="bx bx-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -170,7 +175,7 @@ get_header();
         <section id="contact" class="contact">
             <div class="container">
                 <?php
-                $kontaktai = get_field('kontaktai', 'option');
+                $kontaktai = get_field('kontaktai');
                 if( $kontaktai ): ?>
                     <div class="section-title">
                         <h2><?php echo $kontaktai['sekcijos_pavadinimas']; ?></h2>

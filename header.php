@@ -16,10 +16,13 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
+    <link rel="icon" type="image/png" href="<?php echo get_template_directory_uri() ?>/favicon.png">
 
+    <?php
+    if(!is_page_template( 'template-homepage.php' )) { ?>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+    <?php } ?>
    
     
 	<?php wp_head(); ?>
@@ -68,7 +71,7 @@ if(!is_page_template( 'template-homepage.php' )) { ?>
                     $count = 0;
                     while ( have_rows('nav_linkas', 'option') ) : the_row();
                         $prideti_linka = get_sub_field('prideti_linka');
-                        $homepage = $count == 0 ? 'to-homepage': 'lox';
+                        $homepage = $count == 0 ? 'to-homepage': '';
 
                         ?>
 <!--                        <li class="to-homepage"><a href=""><i class="bx bx-home"></i> <span>GRĮŽTI</span></a></li>-->
@@ -84,13 +87,10 @@ if(!is_page_template( 'template-homepage.php' )) { ?>
                 endif;
                 ?>
                 </ul>
-<!--                <ul>-->
-<!--                    <li class="to-homepage"><a href=""><i class="bx bx-home"></i> <span>GRĮŽTI</span></a></li>-->
-<!--                    <li><a href="#about"><i class="bx bx-user"></i> <span>Apie</span></a></li>-->
-<!--                    <li><a href="#portfolio"><i class="bx bx-book-content"></i> Nuotraukos</a></li>-->
-<!--                    <li><a href="#contact"><i class="bx bx-envelope"></i> Kontaktai</a></li>-->
-<!--                </ul>-->
             </nav><!-- .nav-menu -->
+            <div class="veliavos">
+                <ul><?php pll_the_languages(array('show_flags'=>1,'show_names'=>0)); ?>
+            </div>
             <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
 
         </div>

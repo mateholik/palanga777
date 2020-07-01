@@ -197,7 +197,7 @@ a {
 .homepage .main-title-wrap {
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem; }
+}
   .homepage .main-title-wrap h1 {
     margin: 0; }
 
@@ -397,3 +397,15 @@ a {
   height: 100%;
   z-index: 9999;
   background: url("./../img/loader.gif") 50% 50% no-repeat #fff; }
+
+.veliavos ul {
+  padding: 10px 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.veliavos ul li {
+  padding: 0 10px;
+}
